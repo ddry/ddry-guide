@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/ddry/ddry-guide/issues"
   },
-  "homepage": "https://github.com/ddry/ddry-guide#readme"
+  "homepage": "https://github.com/ddry/ddry-guide#readme",
+  "devDependencies": {
+    "ddry-mocha-tape": "^0.1.21"
+  }
 }
