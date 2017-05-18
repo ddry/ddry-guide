@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = (dd, that) ->
+module.exports = (dd) ->
   dd.drive 
     it: (i, e) ->
       "formats #{i} key-value pairs: #{e}"

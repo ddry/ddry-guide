@@ -7,6 +7,8 @@
     "initial": []
   },
   "moduleTitles": {
-    "numbering": "Numbering module example"
+    "function_export": "Function export module example",
+    "numbering": "Numbering module example",
+    "properties": "Module with deep properties structure example"
   }
 }
