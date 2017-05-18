@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = (dd, that) ->
+module.exports = (dd) ->
   dd.drive
     it: (i, e) ->
       "returns #{e} for #{i[0]} '#{i[1]}' tags"

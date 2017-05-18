@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = (dd, that) ->
+module.exports = (dd) ->
   dd.drive [
     it: (i, e) -> "returns #{e} for #{i}"
     data: [ '1st', '2nd', '3rd', '4th' ]
