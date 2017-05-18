@@ -2,6 +2,10 @@
   "spec": "spec",
   "title": "ddry guide test suite",
   "code": "lib",
+  "helper": {
+    "path": "spec/helper",
+    "initial": []
+  },
   "moduleTitles": {
     "numbering": "Numbering module example"
   }
