@@ -7,6 +7,8 @@
 SpecHelper = ->
   true
 
+SpecHelper.prototype.f = -> 1
+
 SpecHelper.prototype.forMocha = ->
   typeof describe is 'function'
 

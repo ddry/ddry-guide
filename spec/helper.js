@@ -12,6 +12,10 @@
     return true;
   };
 
+  SpecHelper.prototype.f = function() {
+    return 1;
+  };
+
   SpecHelper.prototype.forMocha = function() {
     return typeof describe === 'function';
   };

@@ -6,6 +6,28 @@
     "path": "spec/helper",
     "initial": []
   },
+  "initial": {
+    "instance": {
+      "folder": {
+        "first": [
+          "first folder title",
+          "first folder message"
+        ],
+        "second": [
+          "second folder title",
+          "second folder message"
+        ]
+      },
+      "first": [
+        "first title",
+        "first message"
+      ],
+      "second": [
+        "second title",
+        "second message"
+      ]
+    }
+  },
   "moduleTitles": {
     "function_export": "Function export module example",
     "numbering": "Numbering module example",
