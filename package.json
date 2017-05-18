@@ -1,0 +1,28 @@
+{
+  "name": "ddry-guide",
+  "version": "1.0.0",
+  "description": "Documentation guiding through all the features of data-driven Node JS testing with ddry",
+  "scripts": {
+    "test": "make coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ddry/ddry-guide.git"
+  },
+  "keywords": [
+    "ddry",
+    "documentation",
+    "guide",
+    "data-driven",
+    "testing",
+    "mocha",
+    "tap",
+    "tape"
+  ],
+  "author": "Vassiliy Pimkin <vassiliy.pimkin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ddry/ddry-guide/issues"
+  },
+  "homepage": "https://github.com/ddry/ddry-guide#readme"
+}
