@@ -1,0 +1,8 @@
+{
+  "spec": "spec",
+  "title": "ddry guide test suite",
+  "code": "lib",
+  "moduleTitles": {
+    "numbering": "Numbering module example"
+  }
+}
