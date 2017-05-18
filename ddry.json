@@ -3,10 +3,14 @@
   "title": "ddry guide test suite",
   "code": "lib",
   "helper": {
-    "path": "spec/helper",
+    "path": "helper",
     "initial": []
   },
+  "outside": {
+    "helper": "helper"
+  },
   "initial": {
+    "helper": [],
     "instance": {
       "folder": {
         "first": [
@@ -42,6 +46,7 @@
     "instance": "Instance module example",
     "numbering": "Numbering module example",
     "properties": "Module with deep properties structure example",
-    "selenium": "Selenium PhantomJS driver requirer"
+    "selenium": "Selenium PhantomJS driver requirer",
+    "helper": "Spec helper"
   }
 }
