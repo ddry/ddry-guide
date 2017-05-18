@@ -1,7 +1,7 @@
-.PHONY: c- coveralls mocha tap tape test
+.PHONY: c- coveralls mocha pjs server- tap tape test
 
 c-%:
-	rm -rf spec lib
+	make server-$*
 	coffee -c$*o . source
 
 coveralls:
@@ -16,6 +16,15 @@ mocha:
 		--no-exit \
 		./node_modules/ddry/ddry.js \
 		--check-leaks
+
+pjs:
+	selenium/sh/pjs_cleanup
+
+server-%:
+	rm -rf spec lib
+	@if [ "$*" = "w" ]; then \
+		selenium/sh/server; \
+	fi
 
 tap:
 	node_modules/.bin/tap ./node_modules/ddry/ddry.js

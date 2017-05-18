@@ -1,0 +1,4 @@
+#!/bin/bash
+cd selenium
+sh/ps_cleanup
+brunch w -s &

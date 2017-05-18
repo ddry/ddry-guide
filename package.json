@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/ddry/ddry-guide#readme",
   "devDependencies": {
-    "ddry-mocha-tape": "^0.1.21"
+    "ddry-mocha-tape": "^0.1.21",
+    "ddry-selenium-phantomjs": "^1.1.0",
+    "statik": "^1.4.6"
   }
 }

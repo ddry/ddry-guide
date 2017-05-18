@@ -1,0 +1,2 @@
+#!/bin/bash
+kill `ps | grep -E 'coffee|brunch w -s' | grep -o -E '^[ 0-9]+'`

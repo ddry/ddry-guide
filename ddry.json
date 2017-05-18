@@ -28,9 +28,20 @@
       ]
     }
   },
+  "matchers": "ddry-selenium-matchers",
+  "use": [
+    "selenium"
+  ],
+  "harness": {
+    "tap": {
+      "except": "selenium"
+    }
+  },
   "moduleTitles": {
     "function_export": "Function export module example",
+    "instance": "Instance module example",
     "numbering": "Numbering module example",
-    "properties": "Module with deep properties structure example"
+    "properties": "Module with deep properties structure example",
+    "selenium": "Selenium PhantomJS driver requirer"
   }
 }
