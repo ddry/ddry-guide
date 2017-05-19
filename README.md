@@ -70,7 +70,7 @@ And that is where we smoothly come from getting started to main features.
 
 ### Convention over configuration spec folder structure
 
-Now we have `ddry.json` stating that `spec` is out spec folder and `lib` is our code folder. At the moment only code module in `lib` is `numbering`, so `spec/numbering` is the folder for this module method specs. We even have `spec/numbering/ordinal.js` file containg the spec of `ordinal` method of this module. Sounds trivially, same as any good convention over configuration. I've heard somewhere that triviality is a backside of wisdom.
+Now we have `ddry.json` stating that `spec` is our spec folder and `lib` is our code folder. At the moment only code module in `lib` is `numbering`, so `spec/numbering` is the folder for this module method specs. We even have `spec/numbering/ordinal.js` file containg the spec of `ordinal` method of this module. Sounds trivially, same as any good convention over configuration. I've heard somewhere that triviality is a backside of wisdom.
 
 However, let's mention some features of [ddry](https://www.npmjs.com/package/ddry) behavior regarding misplaced spec folder files or folders.
 
@@ -89,22 +89,22 @@ Empty module spec folders will also be mentioned this way.
 
 Inside the folder of existing module file for method that is not defined (named e.g. `method`) will result in pending spec stating
 
-Notices on missing method specs are not provided.
-
 ```
 Method method()
   - is not defined in 'Numbering module example'
 ```
 
+Notices on missing method specs are not provided.
+
 ### Injected ddry instance
 
-At last, we are in correctly placed spec file of method defined in existent module. First of all, it is a JS module exporting function where first argument is injected instance [ddry](https://www.npmjs.com/package/ddry) of core module `index.js`.
+At last, we are in correctly placed spec file of method defined in existent module. First of all, it is a JS module exporting function where first argument is an injected instance of [ddry](https://www.npmjs.com/package/ddry) core module `index.js`.
 
 Through [ddry](https://www.npmjs.com/package/ddry) codebase it is reffered as `dd` standing for data-driven. It contains some methods we can use for data-driven testing and some data about the whole modular spec suite. At this point methods are much more important than anything else.
 
 And most important of them is definitely `drive` that takes assertion object or array of assertion objects and delivers it to every test harness [ddry](https://www.npmjs.com/package/ddry) knows about in processable form to produce an actual assertion.
 
-Before we dig too deep into it, let's mention `pending` method that takes no arguments and simply produces **pending** assertion outputting module title and method it is invoked for. To make a good spec stub clearly reporting its location, create file this way:
+Before we dig too deep into it, let's mention `pending` method that takes no arguments and simply produces **pending** assertion outputting module title and method it is invoked for. To make a good spec stub clearly reporting its location, create a file this way:
 
 ```coffee
 'use strict'
@@ -126,7 +126,7 @@ That output may be handy if you have several spec stubs.
 
 ### CoffeeScript Sublime Text snippets
 
-Take a look at [Sublime Text CoffeeScript snippets for ddry](https://github.com/ddry/ddry-sublime-coffee-snippets). We'll be able to install them via `Package Control: Install Package` as soon as my PR gets merged, but at the moment you can place them to your User packages.
+Take a look at [Sublime Text CoffeeScript snippets for ddry](https://github.com/ddry/ddry-sublime-coffee-snippets). We'll be able to install them via `Package Control: Install Package` as soon as my PR gets merged, but at the moment you can manually place them to your User packages.
 
 ### Sequences
 
