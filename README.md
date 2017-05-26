@@ -218,7 +218,7 @@ Also, from this point we'll stop emphasizing sequence specs and spec sequences a
 
 Now, when you've hopefully get acquainted with [ddry](https://www.npmjs.com/package/ddry) CoffeeScript code, take a look at [Sublime Text CoffeeScript snippets for ddry](https://github.com/ddry/ddry-sublime-coffee-snippets). We'll be able to install them via `Package Control: Install Package` as soon as my PR gets merged, but at the moment you can manually place them to your User packages.
 
-### Injected target module context
+### Injected target module context — `that`
 
 Within spec file you may access target code module this way:
 
@@ -239,3 +239,80 @@ module.exports = (dd, that) ->
 ```
 
 With the power of default matchers set and cross-harness `before` and `after` hooks this is unlikely necessary, but for your JS freestyling you may use the approach you prefer.
+
+### Property matcher
+
+In [Introducing `property` matcher and cross-harness hooks and context](https://github.com/ddry/ddry-guide/commit/cf4b2862fefac132ea8aae23d3a9ed7ff504b5f8) we meet methods setting the module public properties. Quite self-explaining code
+
+```coffee
+  dd.drive
+    matcher: 'property'
+    it: 'sets the "few" property of this module'
+    i: [ 100500 ]
+    e:
+      few: 100500
+```
+
+applies `i` to subject method then checks that all the properties of `e` object match the target code module public properties.
+
+### Cross-harness `context`
+
+At the same [point](https://github.com/ddry/ddry-guide/commit/cf4b2862fefac132ea8aae23d3a9ed7ff504b5f8) we meet [this](https://github.com/ddry/ddry-guide/commit/cf4b2862fefac132ea8aae23d3a9ed7ff504b5f8#diff-f608b012420cc1d0ac167c8579a74d7d) spec presenting both main cross-harness features — `context` and hooks.
+
+Cross-harness `dd.context`, same as Mocha `context`, takes the context title string as first argument and runs the following specs function inside this context. That produces the following effects through harnesses:
+- in [Mocha](https://www.npmjs.com/package/mocha) behaves exactly as native nestable `context`
+- in [Tape](https://www.npmjs.com/package/tape) it's plainly a log message (all the nested contexts will be displayed at the same level)
+- in [TAP](https://www.npmjs.com/package/tap) will produce no effect at all due to nature of TAP output.
+
+Main purpose of this feature is to avoid stumbling when you need to use the context in your spec code structure on the test harness that does not support context.
+
+### Cross-harness `before` and `after` hooks
+
+At file and commit mentioned above we also can see the cross-harness `before` and `after` hooks. Yet while quite self-explaining, they have some specific features. First of all, both of them are spec object properties which enables them to be shared through specs sequence. So, inside full spec object (with `it` and `i`, `e` or `data`) it will act the same as corresponding Mocha hook, and when used as shared spec object it will act like `before_all` or `after_all` hook.
+
+Another important feature is that inside these special spec object properties usual JS `this` keyword always points to the target code module (or its relevant instance). Just take a look at these expressive `@`s in the wild.
+
+And again, if you need to organize your JS code flow with `before` and `after` hooks, or even their mass-effect versions, you should not stumble on that some test harness does not support these features. Hooks in general controversies are also not a thing to stumble on.
+
+### Spec helper
+
+First of all, no one can forbid you to `require` anything you need in your spec file — it's a conventional JS module after all, so please freestyle at your comfort as you wish. But to make your spec suite solid and its dependencies accountable you may find spec `helper` quite handy. Define it somewhere outside your set `spec` folder, not like in initially presenting the helper [Introducing spec helper and native Mocha hooks](https://github.com/ddry/ddry-guide/commit/2bde84352db17222ddfe6ab08f7caf0f41f79d1e). It was moved later, please note.
+
+Spec helper is necessarily instantiated, so please make it a constructor. Also that means that you have to provide an initial value for instantiation, at least empty, wrapped into array. Specify the helper path and initial value in `ddry.json`:
+
+```json
+  "helper": {
+    "path": "spec/helper",
+    "initial": []
+  },
+```
+
+and access its features across all of your specs with `dd.helper`.
+
+_In this guide spec helper implements `forMocha` method to demonstrate native Mocha code inclusion. Looking at this code fragment one can possibly see awkward visibility scopes, `that` meaning `this`, code clarity DRYed out and other reasons to **never** use hooks. However, hooks in general controversy is outside the scope of this guide._
+
+### Deep parameterizer method — `dd.ry`
+
+Honestly, this whole [ddry](https://www.npmjs.com/package/ddry) thing is highly opinionated, and sometimes its pretending to be outside some general controversies is unbearable. Especially in this highly branded feature description. So, let's look into this list of statements:
+- specs should not be DRY
+- specs should not be repetitive
+- specs should not contain indirectly defined examples
+- specs should not be overloaded with details
+
+When starting any **real** spec of method processing **real** data we find our position in the field polarized by these criteria very uncomfortable. We'll definitely fail at least half of them.
+
+Deep parameterizer method `dd.ry` is not intended to reach any polar position — its purpose is enabling agility on this field. Really achievable balance is at some definite point on this field, so let's move there.
+
+_However, among all the controversial subjects of this guide (and Node JS testing in general eventually) deep parameterizing is the best choice to shoot oneself in the foot (as many other things in software development world in general, eventually). Great power implies great responsibility — that looks quite familiar._
+
+`dd.ry` takes three arguments:
+- context
+- value to apply to spec function
+- spec function
+
+It will spawn the cross-harness context if context title string given, pass something falsy if you don't want context.
+And then you can create whatever spec object (or even spec sequence) from whatever parameters _(most advanced shoot-yourself-in-the-foot feature)_.
+
+This deep parameterizer method has another usage context: when context is the only argument and given as object. Then it plainly shortcuts `dd.context` and `dd.drive` calls and keep you focused on your data. Please take a look at **ddry** matchers specs written in this manner: [anyOrder](https://github.com/ddry/ddry/blob/master/source/spec/lib/matchers/index/anyOrder.coffee) and [contains](https://github.com/ddry/ddry/blob/master/source/spec/lib/matchers/index/contains.coffee).
+
+It's up to you to evaluate the compliance of these techniques to your preferred code style. Keep your feet safe.

@@ -6,11 +6,11 @@ module.exports = (dd) ->
       dd.drive [
         before: ->
           @.few = n
-        it: "Says '#{'hi'.repeat 2*n}' once"
+        it: "Says '#{'hi'.repeat 2*n}' twice"
         i: []
         e: 'hi'.repeat 2*n
       ,
-        it: "Says '#{'blah'.repeat 2*n}' once"
+        it: "Says '#{'blah'.repeat 2*n}' twice"
         i: [ 'blah' ]
         e: 'blah'.repeat 2*n
         after: ->
